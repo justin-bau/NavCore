@@ -1,18 +1,19 @@
-# NavCore description
+[![CI](https://github.com/justin-bau/NavCore/actions/workflows/CI.yml/badge.svg)](https://github.com/justin-bau/NavCore/actions/workflows/CI.yml)
+# NavCore
 
 GNSS/INS sensor fusion from scratch in Julia as a learning project in both Julia and
 estimation/navigation. It also makes use of Julia's tolerance of unicode characters, this could
 potentially mean that the code does not display without some fonts.
 
-This is a work in progress I do when I can find some time. It definitely needs more time.
+This is a work in progress I do when I can find some time.
 
 The goal being to actually understand as I'm coding, the filter is built gradually:
 
-1. Scalar Kalman filter (constant estimation)
-2. Linear KF, vector state (constant-velocity tracking) + consistency checks (NEES/NIS).
+1. ~~Scalar Kalman filter (constant estimation)~~
+2. ~~Linear KF, vector state (constant-velocity tracking)~~ + consistency checks (NEES/NIS) (halfway done). 
 3. EKF + attitude (quaternions, error state).
 4. Simulate measurements from an IMU with a real datasheet error model.
-5. Build a comparison between EKF and UKF.
+5. Build a comparison between EKF, ESKF and UKF.
 6. Add GNSS measurements for sensor fusion.
 
 ## Running
