@@ -15,7 +15,7 @@ end
 
 function discretize_process_noise(A, Q, Δt)
   n = size(A, 1)
-  F = [-A Q; zeros(n,n) A'] * Δt
+  F = [-A Q; zeros(n, n) A'] * Δt
   G = exp(F)
 
   G[n+1:2n, n+1:2n]' * G[1:n, n+1:2n]

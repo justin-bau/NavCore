@@ -26,19 +26,19 @@ results = run_kalman_filter(x0_initial_guess, P0, A, B, C, D, Q, R, z, Δt)
 
 ϵ = zeros(N)
 for i = 1:N
-  ϵ[i] = compute_nees(x_true[:,i], results.x_estimated[:,i], results.P_estimated[:, :, i])  
+  ϵ[i] = compute_nees(x_true[:, i], results.x_estimated[:, i], results.P_estimated[:, :, i])
 end
 
-p1 = plot(0:N, [results.P_estimated[1, 1, :], results.P_estimated[1, 2, :], results.P_estimated[2, 2, :]], 
-          label=["P(1,1)" "P(1,2)" "P(2,2)"])
+p1 = plot(0:N, [results.P_estimated[1, 1, :], results.P_estimated[1, 2, :], results.P_estimated[2, 2, :]],
+  label=["P(1,1)" "P(1,2)" "P(2,2)"])
 
 p2 = plot(0:N, [x_true[1, :], results.x_estimated[1, :], z[:]],
-     label=["position_true" "position_filtered" "measurements"])
+  label=["position_true" "position_filtered" "measurements"])
 
 p3 = plot(0:N, [x_true[2, :], results.x_estimated[2, :]],
-     label=["velocity_true" "velocity_filtered"])
+  label=["velocity_true" "velocity_filtered"])
 
 p4 = plot(1:N, [fill(length(x0_true), N), results.ϵ_v, ϵ],
-     label=["degrees of freedom" "NIS" "NEES"])
+  label=["degrees of freedom" "NIS" "NEES"])
 
 plot(p1, p2, p3, p4, layout=(2, 2))

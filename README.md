@@ -1,18 +1,19 @@
-# nav-core
+# nav-core description
 
 GNSS/INS sensor fusion from scratch in Julia as a learning project in both Julia and
-estimation/navigation.
+estimation/navigation. It also makes use of Julia's tolerance of unicode characters, this could
+potentially mean that the code does not display without some fonts.
 
-Goal being to actually understand, the filter is built gradually:
+This is a work in progress I do when I can find some time. It definitely needs more time.
 
-1. Scalar Kalman filter (constant estimation) — get a feel for P, Q, R.
+The goal being to actually understand as I'm coding, the filter is built gradually:
+
+1. Scalar Kalman filter (constant estimation)
 2. Linear KF, vector state (constant-velocity tracking) + consistency checks (NEES/NIS).
 3. EKF + attitude (quaternions, error state).
-4. IMU mechanization + a real datasheet error model.
-5. Loosely- then tightly-coupled ESKF, and an observability study.
-
-Scaffolding of the project (repository structure, pkgs) conceived with AI. Actual code is
-hand-written.
+4. Simulate measurements from an IMU with a real datasheet error model.
+5. Build a comparison between EKF and UKF.
+6. Add GNSS measurements for sensor fusion.
 
 ## Running
 
