@@ -10,10 +10,10 @@ struct Kalman_Results
   Kalman_Results(n::Int64, m::Int64, N::Int64) = new(zeros(n, N), zeros(n, n, N), zeros(n, N + 1), zeros(n, n, N + 1), zeros(n, m, N), zeros(m, N), zeros(m, m, N), zeros(N))
 end
 
-function Kalman_Results(x0::Vector{Float64}, P0::Matrix{Float64}, m::Int64, N::Int64)
+function Kalman_Results(x0, P0, m::Int64, N::Int64)
   r = Kalman_Results(length(x0), m, N)
-  r.x_estimated[:, 1] = x0
-  r.P_estimated[:, :, 1] = P0
+  r.x_estimated[:, 1] .= x0
+  r.P_estimated[:, :, 1] .= P0
   r
 end
 
@@ -57,8 +57,7 @@ function run_kalman_filter(x0, P0, A, B, C, D, Q, R, z, Δt)
     results.P_estimated[:, :, i+1] = ((I - results.K[:, :, i] * H) * results.P_predicted[:, :, i] * (I - results.K[:, :, i] * H)'
                                       +
                                       results.K[:, :, i] * R * results.K[:, :, i]')
-    +results.K[:, :, i] * R * results.K[:, :, i]'
-    results.ϵ_v[i] = compute_nis(z[:, i], H, results.x_predicted[:, i], results.S[:, :, i])
+    results.ϵ_v[i] = (results.v[:, i]'/results.S[:, :, i]*results.v[:, i])[1]
   end
   results
 end
