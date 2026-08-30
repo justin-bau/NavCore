@@ -1,4 +1,4 @@
-# nav-core description
+# NavCore description
 
 GNSS/INS sensor fusion from scratch in Julia as a learning project in both Julia and
 estimation/navigation. It also makes use of Julia's tolerance of unicode characters, this could
